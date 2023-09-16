@@ -6,3 +6,6 @@ build:
 
 dev: build $(BINDIR)
 	$(BINEXE)
+
+test:
+	go test -v ./...

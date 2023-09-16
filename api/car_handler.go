@@ -10,7 +10,7 @@ import (
 )
 
 func (s *Server) CreateCar(res http.ResponseWriter, req *http.Request) {
-	if req.Method == "POST" {
+	if req.Method == http.MethodPost {
 		var newCar types.Car
 		err := json.NewDecoder(req.Body).Decode(&newCar)
 		if err != nil {
@@ -33,7 +33,7 @@ func (s *Server) CreateCar(res http.ResponseWriter, req *http.Request) {
 }
 
 func (s *Server) GetCar(res http.ResponseWriter, req *http.Request) {
-	if req.Method == "GET" {
+	if req.Method == http.MethodGet {
 		id := strings.TrimPrefix(req.URL.Path, "/car/one/")
 		idInt, _ := strconv.Atoi(id)
 
@@ -52,7 +52,7 @@ func (s *Server) GetCar(res http.ResponseWriter, req *http.Request) {
 }
 
 func (s *Server) GetAllCars(res http.ResponseWriter, req *http.Request) {
-	if req.Method == "GET" {
+	if req.Method == http.MethodGet {
 		cars, err := s.store.GetAll()
 		if err != nil {
 			SendErrorResponse(res, err)
@@ -68,7 +68,7 @@ func (s *Server) GetAllCars(res http.ResponseWriter, req *http.Request) {
 }
 
 func (s *Server) UpdateCar(res http.ResponseWriter, req *http.Request) {
-	if req.Method == "PUT" {
+	if req.Method == http.MethodPut {
 		id := strings.TrimPrefix(req.URL.Path, "/car/update/")
 		idInt, _ := strconv.Atoi(id)
 
