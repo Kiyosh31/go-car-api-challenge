@@ -1,11 +1,18 @@
-BINEXE = ./bin/api
+GO = go
+RUN = run
+BUILD = build
+TEST = test
+BINDIR = bin
+EXE = api
 
 build:
-	echo "Building..."
-	go build -o $(BINEXE)
+	$(GO) $(BUILD) -o $(BINDIR)/$(EXE)
 
-dev: build $(BINDIR)
-	$(BINEXE)
+dev: main.go
+	$(GO) $(RUN) main.go
+
+run: build $(BINDIR)
+	$(BINDIR)/$(EXE)
 
 test:
-	go test -v ./...
+	$(GO) $(TEST) -v ./...

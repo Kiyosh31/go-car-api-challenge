@@ -32,12 +32,12 @@ func (s *CarStore) Get(id int) (types.Car, error) {
 		}
 	}
 
-	return types.Car{}, fmt.Errorf("Carro no encontrado")
+	return types.Car{}, fmt.Errorf("Car not found")
 }
 
 func (s *CarStore) GetAll() ([]types.Car, error) {
 	if len(carDatabase) == 0 {
-		return nil, fmt.Errorf("No hay registros en la DB")
+		return nil, fmt.Errorf("No elements in DB")
 	} else {
 		return carDatabase, nil
 	}
@@ -61,5 +61,5 @@ func (s *CarStore) getCarPositionInList(id int) (int, error) {
 		}
 	}
 
-	return 0, fmt.Errorf("Carro no encontrado")
+	return 0, fmt.Errorf("Car not found")
 }

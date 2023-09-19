@@ -23,10 +23,10 @@ func NewServer(listenPort string, store store.CarStore) *Server {
 }
 
 func (s *Server) registerRoutes() {
-	http.HandleFunc("/car/create", s.CreateCar)
-	http.HandleFunc("/car/one/", s.GetCar)
-	http.HandleFunc("/car/all", s.GetAllCars)
-	http.HandleFunc("/car/update/", s.UpdateCar)
+	http.HandleFunc("/car/create", CreateCarMiddleware(s.CreateCar))
+	http.HandleFunc("/car/one/", GetCarMiddleware(s.GetCar))
+	http.HandleFunc("/car/all", GetAllCarsMiddleware(s.GetAllCars))
+	http.HandleFunc("/car/update/", UpdateCarMiddleware(s.UpdateCar))
 }
 
 func (s *Server) Start() error {

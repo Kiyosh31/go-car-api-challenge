@@ -9,18 +9,7 @@ import (
 )
 
 func (s *Server) TestCreateCar(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(s.CreateCar))
-	resp, err := http.Post(server.URL)
-	if err != nil {
-		t.Error(err)
-	}
-
-	if resp.StatusCode != http.StatusCreated {
-		t.Errorf("expected 201 but got: %d", resp.StatusCode)
-	}
-	defer resp.Body.Close()
-
-	expected := types.Car{
+	mockReq := types.Car{
 		Id:       1,
 		Make:     "Toyota",
 		Model:    "Prius",
@@ -31,6 +20,17 @@ func (s *Server) TestCreateCar(t *testing.T) {
 		Mileage:  100,
 		Price:    2456.77,
 	}
+
+	server := httptest.NewServer(http.HandlerFunc(s.CreateCar))
+	resp, err := http.Post(server.URL, mockReq)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if resp.StatusCode != http.StatusCreated {
+		t.Errorf("expected 201 but got: %d", resp.StatusCode)
+	}
+	defer resp.Body.Close()
 
 	res, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
