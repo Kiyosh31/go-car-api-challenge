@@ -12,7 +12,7 @@ type Server struct {
 	store      store.CarStore
 }
 
-func NewServer(listenPort string, store store.CarStore) *Server {
+func CreateNewServer(listenPort string, store store.CarStore) *Server {
 	server := &Server{
 		listenPort: listenPort,
 		store:      store,

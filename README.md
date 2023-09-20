@@ -7,14 +7,14 @@ This codebase is a challenge to create a very simple REST api about cars, does n
 ## Pre-requisites
 
 1. Go 1.18.1
-2. ability to run Makefiles
+2. Ability to run Makefiles
 
 ## Run
 
 1. Open a terminal in root folder
 2. Run command
    ```console
-   make dev
+   make run
    ```
 
 At this point API is ready to receive HTTP requests

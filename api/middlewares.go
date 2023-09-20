@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"strings"
 )
@@ -55,9 +54,9 @@ func CreateCarMiddleware(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		buf, _ := ioutil.ReadAll(req.Body)
-		rdr1 := ioutil.NopCloser(bytes.NewBuffer(buf))
-		rdr2 := ioutil.NopCloser(bytes.NewBuffer(buf))
+		buf, _ := io.ReadAll(req.Body)
+		rdr1 := io.NopCloser(bytes.NewBuffer(buf))
+		rdr2 := io.NopCloser(bytes.NewBuffer(buf))
 
 		if err := isCarBodyValid(rdr1); err != nil {
 			SendErrorResponse(res, err)
@@ -117,9 +116,9 @@ func UpdateCarMiddleware(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		buf, _ := ioutil.ReadAll(req.Body)
-		rdr1 := ioutil.NopCloser(bytes.NewBuffer(buf))
-		rdr2 := ioutil.NopCloser(bytes.NewBuffer(buf))
+		buf, _ := io.ReadAll(req.Body)
+		rdr1 := io.NopCloser(bytes.NewBuffer(buf))
+		rdr2 := io.NopCloser(bytes.NewBuffer(buf))
 
 		if err := isCarBodyValid(rdr1); err != nil {
 			SendErrorResponse(res, err)
